@@ -1,4 +1,4 @@
-### Web Service API (reading data)
+### Web Service API (reading & writing data)
 ```
 mbohun@linux-khr1:~> curl -s "http://${username}:${pass}@uat-rosco.oztaxa.com/service.php/find/ca_objects?q=*" | jq '.total'
 11
@@ -15,6 +15,26 @@ mbohun@linux-khr1:~> curl -s "http://${username}:${pass}@uat-rosco.oztaxa.com/se
 }
 ```
 
+TODO: Although we were following the [official docs](https://docs.collectiveaccess.org/wiki/Web_Service_API#Editing_records) and the operations seemingly succeeded, the actual DB fields were not updated:
+
+1. get an existing record you previously created through the web GUI
+   ```
+   curl -s \
+      	-X GET \
+	"http://${username}:${pass}@uat-rosco.oztaxa.com/service.php/item/ca_objects/id/25?pretty=1&format=edit" \
+	> rosco_test_rec_id-25.json
+   ```
+2. edit/update the fields
+   ```
+   ```
+   ```
+   ```
+3. write the updated record
+   ```
+   ```
+4. repeat the step 1. above to get and verify the updated record  
+   ```
+   ```
 ### Application plugins (for writing/creating data)
 
 ```php
