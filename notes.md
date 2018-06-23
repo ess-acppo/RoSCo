@@ -1,4 +1,4 @@
-
+### Web Service API (reading data)
 ```
 mbohun@linux-khr1:~> curl -s "http://${username}:${pass}@uat-rosco.oztaxa.com/service.php/find/ca_objects?q=*" | jq '.total'
 11
@@ -15,6 +15,16 @@ mbohun@linux-khr1:~> curl -s "http://${username}:${pass}@uat-rosco.oztaxa.com/se
 }
 ```
 
+### Application plugins (for writing/creating data)
+
+```php
+public function hookEditItem($pa_params) {
+	$item_id = $pa_params['id'];  // The parameter passed to EditItem is a key'ed array of values (see below for details)
+	$table_num = $pa_params['table_num'];
+
+	// ... more code here ...
+}
+```
 
 ### References
 - https://docs.collectiveaccess.org/wiki/Main_Page
