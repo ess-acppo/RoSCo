@@ -1,0 +1,53 @@
+ag-bie JSON fields
+```BASH
+curl -s 'https://ag-bie.oztaxa.com/ws/search?q=Dolichovespula' | jq -S '.searchResults.results[0]|keys'
+```
+```JSON
+[
+  "author",
+  "class",
+  "classGuid",
+  "commonName",
+  "commonNameSingle",
+  "conservationStatus",
+  "family",
+  "familyGuid",
+  "genus",
+  "genusGuid",
+  "guid",
+  "highlight",
+  "id",
+  "idxtype",
+  "infoSourceName",
+  "infoSourceURL",
+  "kingdom",
+  "kingdomGuid",
+  "linkIdentifier",
+  "name",
+  "nameComplete",
+  "nameFormatted",
+  "nomenclaturalCode",
+  "nomenclaturalStatus",
+  "occurrenceCount",
+  "order",
+  "orderGuid",
+  "parentGuid",
+  "phylum",
+  "phylumGuid",
+  "rank",
+  "rankID",
+  "scientificName",
+  "scientificNameAuthorship",
+  "subfamily",
+  "subfamilyGuid",
+  "subkingdom",
+  "subkingdomGuid",
+  "suborder",
+  "suborderGuid",
+  "superclass",
+  "superclassGuid",
+  "superfamily",
+  "superfamilyGuid",
+  "taxonomicStatus"
+]
+```
