@@ -57,4 +57,5 @@ Uset **get() & set()** to read & write the fields
 - https://docs.collectiveaccess.org/wiki/Application_plugins
 - https://docs.collectiveaccess.org/wiki/API:Getting_Data
 - [php wrapper](https://github.com/stefankeidel/ca-service-wrapper)
+- https://github.com/CollectiveAccessProject/collectiveaccess-php
 - https://docstore.mik.ua/orelly/webprog/pcook/ch18_19.htm
