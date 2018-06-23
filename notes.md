@@ -20,9 +20,9 @@ TODO: Although we were following the [official docs](https://docs.collectiveacce
 1. get an existing record you previously created through the web GUI
    ```
    curl -s \
-      	-X GET \
-	"http://${username}:${pass}@uat-rosco.oztaxa.com/service.php/item/ca_objects/id/25?pretty=1&format=edit" \
-	> rosco_test_rec_id-25.json
+        -X GET \
+        "http://${username}:${pass}@uat-rosco.oztaxa.com/service.php/item/ca_objects/id/25?pretty=1&format=edit" \
+        > rosco_test_rec_id-25.json
    ```
 2. edit/update the fields
    ```
