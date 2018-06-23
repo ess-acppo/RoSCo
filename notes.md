@@ -26,6 +26,13 @@ public function hookEditItem($pa_params) {
 }
 ```
 
+Uset **get() & set()** to read & write the fields
+```php
+	$t_object->get('ca_objects.description');
+	$t_object->set('idno', 'my_new_idno');
+```
+
 ### References
 - https://docs.collectiveaccess.org/wiki/Main_Page
 - https://docs.collectiveaccess.org/wiki/Application_plugins
+- https://docs.collectiveaccess.org/wiki/API:Getting_Data
