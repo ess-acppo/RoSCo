@@ -36,3 +36,4 @@ Uset **get() & set()** to read & write the fields
 - https://docs.collectiveaccess.org/wiki/Main_Page
 - https://docs.collectiveaccess.org/wiki/Application_plugins
 - https://docs.collectiveaccess.org/wiki/API:Getting_Data
+- https://docstore.mik.ua/orelly/webprog/pcook/ch18_19.htm
