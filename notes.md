@@ -15,7 +15,7 @@ mbohun@linux-khr1:~> curl -s "http://${username}:${pass}@uat-rosco.oztaxa.com/se
 }
 ```
 
-TODO: Although we were following the [official docs](https://docs.collectiveaccess.org/wiki/Web_Service_API#Editing_records) and the operations seemingly succeeded, the actual DB fields were not updated:
+~TODO: Although we were following the [official docs](https://docs.collectiveaccess.org/wiki/Web_Service_API#Editing_records) and the operations seemingly succeeded, the actual DB fields were not updated:~ **FIXED 2018-06-25**
 
 1. get an existing record you previously created through the web GUI
    ```
