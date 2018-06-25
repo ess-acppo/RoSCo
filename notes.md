@@ -109,6 +109,7 @@ Uset **get() & set()** to read & write the fields
 - https://docs.collectiveaccess.org/wiki/Main_Page
 - https://docs.collectiveaccess.org/wiki/Application_plugins
 - https://docs.collectiveaccess.org/wiki/API:Getting_Data
+- https://docs.collectiveaccess.org/wiki/Web_Service_API#Editing_records (**`"remove_all_attributes": true`**)
 - [php wrapper](https://github.com/stefankeidel/ca-service-wrapper)
 - https://github.com/CollectiveAccessProject/collectiveaccess-php
 - https://docstore.mik.ua/orelly/webprog/pcook/ch18_19.htm
