@@ -52,7 +52,7 @@ curl -s \
         "http://${host}/service.php/item/ca_objects/id/25?authToken=${authToken}&pretty=1&format=edit" \
         > /tmp/test_rec_id-25.json
    ```
-2. edit/update the fields **`"remove_all_attrbutes": true`**
+2. edit/update the fields **`"remove_all_attributes": true`**
    ```
    
    ```
@@ -67,7 +67,7 @@ curl -s \
    ```JSON
    
    ```
-   ```
+   **NOTE:** error handling / return value JSON processing /BUG
 4. repeat the step 1. above to get and verify the updated record  
    ```
    ```
