@@ -46,18 +46,26 @@ curl -s \
 ~TODO: Although we were following the [official docs](https://docs.collectiveaccess.org/wiki/Web_Service_API#Editing_records) and the operations seemingly succeeded, the actual DB fields were not updated:~ **FIXED 2018-06-25**
 
 1. get an existing record you previously created through the web GUI
-   ```
+   ```BASH
    curl -s \
         -X GET \
         "http://${host}/service.php/item/ca_objects/id/25?authToken=${authToken}&pretty=1&format=edit" \
-        > test_rec_id-25.json
+        > /tmp/test_rec_id-25.json
    ```
-2. edit/update the fields
+2. edit/update the fields **`"remove_all_attrbutes": true`**
    ```
-   ```
-   ```
+   
    ```
 3. write the updated record
+   ```BASH
+   curl -s \
+        -X PUT \
+        -d @/tmp/test_rec_id-25_edited.json \
+        "http://${host}/service.php/item/ca_objects/id/${record_id}?authToken=${authToken}" \
+	| jq
+   ```
+   ```JSON
+   
    ```
    ```
 4. repeat the step 1. above to get and verify the updated record  
