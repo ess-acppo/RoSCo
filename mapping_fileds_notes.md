@@ -1,3 +1,5 @@
+### mapping fields (from ag-bie to collectiveaccess / rosco)
+
 ag-bie JSON result/payload
 ```BASH
 curl -s 'https://ag-bie.oztaxa.com/ws/search?q=Dolichovespula' | jq -S '.searchResults.results[0]'
@@ -49,5 +51,22 @@ curl -s 'https://ag-bie.oztaxa.com/ws/search?q=Dolichovespula' | jq -S '.searchR
   "superfamily": "Vespoidea",
   "superfamilyGuid": "101201",
   "taxonomicStatus": "accepted"
+}
+```
+```BASH
+curl -s \
+    'https://ag-bie.oztaxa.com/ws/search?q=Drosera%20indica' \
+    | jq '.searchResults.results[0] | { "attributes": { "r_kingdom": [ { "locale": "en_US", "r_kingdom": .kingdom } ] } }'
+```
+```JSON
+{
+  "attributes": {
+    "r_kingdom": [
+      {
+        "locale": "en_US",
+        "r_kingdom": "Plantae"
+      }
+    ]
+  }
 }
 ```
