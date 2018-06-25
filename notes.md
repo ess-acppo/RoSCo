@@ -1,14 +1,23 @@
 ### Web Service API (reading & writing data)
 
 #### auth
+```BASH
+mbohun@linux-khr1:~> curl -s -X GET "http://${username}:${pass}@${host}/service.php/auth/login" | jq
 ```
-mbohun@linux-khr1:~> curl -s -X GET "http://${username}:${pass}@sit-rosco.oztaxa.com/service.php/auth/login" | jq
+```JSON
 {
   "ok": true,
   "authToken": "f317dc808b5ab13dae8eba4f565d030fc8cd79b8497285dbabaf9abe2e761c27"
 }
+```
+```BASH
+authToken=`curl -s -X GET "http://${username}:${pass}@${host}/service.php/auth/login" | jq -r '.authToken'`
+echo "authToken: ${authToken}"
 
-
+curl -s \
+     -X GET \
+     "http://${host}/service.php/item/ca_objects/id/${record_id}?authToken=${authToken}" \
+     > /tmp/record.json
 ```
 
 #### search
