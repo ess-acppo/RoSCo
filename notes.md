@@ -1,4 +1,17 @@
 ### Web Service API (reading & writing data)
+
+#### auth
+```
+mbohun@linux-khr1:~> curl -s -X GET "http://${username}:${pass}@sit-rosco.oztaxa.com/service.php/auth/login" | jq
+{
+  "ok": true,
+  "authToken": "f317dc808b5ab13dae8eba4f565d030fc8cd79b8497285dbabaf9abe2e761c27"
+}
+
+
+```
+
+#### search
 ```
 mbohun@linux-khr1:~> curl -s "http://${username}:${pass}@uat-rosco.oztaxa.com/service.php/find/ca_objects?q=*" | jq '.total'
 11
