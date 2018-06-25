@@ -52,7 +52,9 @@ curl -s \
         "http://${host}/service.php/item/ca_objects/id/25?authToken=${authToken}&pretty=1&format=edit" \
         > /tmp/test_rec_id-25.json
    ```
-2. edit/update the fields **`"remove_all_attributes": true`**
+2. edit/update the fields
+   **`"remove_all_attributes": true`**
+   editing JSON [jq setpath()](https://stedolan.github.io/jq/manual/#Builtinoperatorsandfunctions)
    ```
    
    ```
