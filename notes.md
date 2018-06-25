@@ -70,6 +70,21 @@ curl -s \
    
    ```
    **NOTE:** error handling / return value JSON processing /BUG
+   ```BASH
+   curl -s \
+        -X PUT \
+	-d @item_request.json \
+	"http://${host}/service.php/item/ca_entities?authToken=${authToken}" \
+	| jq
+   ```
+   ```JSON
+   {
+       "ok": false,
+       "errors": [
+           "Type must be specified"
+       ]
+   }
+   ```
 4. repeat the step 1. above to get and verify the updated record  
    ```
    ```
