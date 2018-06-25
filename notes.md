@@ -22,13 +22,19 @@ curl -s \
 
 #### search
 ```
-mbohun@linux-khr1:~> curl -s "http://${host}/service.php/find/ca_objects?authToken=${authToken}&q=*" | jq '.total'
+curl -s "http://${host}/service.php/find/ca_objects?authToken=${authToken}&q=*" | jq '.total'
 11
 
-mbohun@linux-khr1:~> curl -s "http://${host}/service.php/find/ca_objects?authToken=${authToken}&q=*" | jq '.results|length'
+curl -s "http://${host}/service.php/find/ca_objects?authToken=${authToken}&q=*" | jq '.results|length'
 11
 
-mbohun@linux-khr1:~> curl -s "http://${host}/service.php/find/ca_objects?authToken=${authToken}&q=*" | jq '.results[0]'
+```
+```BASH
+curl -s \
+     "http://${host}/service.php/find/ca_objects?authToken=${authToken}&q=*" \
+     | jq '.results[0]'
+```
+```JSON
 {
   "object_id": "1",
   "id": "1",
