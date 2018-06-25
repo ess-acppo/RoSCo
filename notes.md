@@ -22,13 +22,13 @@ curl -s \
 
 #### search
 ```
-mbohun@linux-khr1:~> curl -s "http://${username}:${pass}@uat-rosco.oztaxa.com/service.php/find/ca_objects?q=*" | jq '.total'
+mbohun@linux-khr1:~> curl -s "http://${host}/service.php/find/ca_objects?authToken=${authToken}&q=*" | jq '.total'
 11
 
-mbohun@linux-khr1:~> curl -s "http://${username}:${pass}@uat-rosco.oztaxa.com/service.php/find/ca_objects?q=*" | jq '.results|length'
+mbohun@linux-khr1:~> curl -s "http://${host}/service.php/find/ca_objects?authToken=${authToken}&q=*" | jq '.results|length'
 11
 
-mbohun@linux-khr1:~> curl -s "http://${username}:${pass}@uat-rosco.oztaxa.com/service.php/find/ca_objects?q=*" | jq '.results[0]'
+mbohun@linux-khr1:~> curl -s "http://${host}/service.php/find/ca_objects?authToken=${authToken}&q=*" | jq '.results[0]'
 {
   "object_id": "1",
   "id": "1",
@@ -43,8 +43,8 @@ mbohun@linux-khr1:~> curl -s "http://${username}:${pass}@uat-rosco.oztaxa.com/se
    ```
    curl -s \
         -X GET \
-        "http://${username}:${pass}@uat-rosco.oztaxa.com/service.php/item/ca_objects/id/25?pretty=1&format=edit" \
-        > rosco_test_rec_id-25.json
+        "http://${host}/service.php/item/ca_objects/id/25?authToken=${authToken}&pretty=1&format=edit" \
+        > test_rec_id-25.json
    ```
 2. edit/update the fields
    ```
