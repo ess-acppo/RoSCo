@@ -1,5 +1,11 @@
 ### mapping fields (from ag-bie to collectiveaccess / rosco)
 
+1. The user creates new object in CollectiveAccess, enters new object identifier (`idno`) and presses the Save button 
+2. The installed custom PHP hook [hookSaveItem or hookBeforeSaveItem](https://docs.collectiveaccess.org/wiki/Application_plugins#Editing_.28Providence_editors.29) uses the object identifier (`idno`)
+3.
+4.
+5.
+
 | in the URL string                                       | --data-urlencode |
 |:--------------------------------------------------------|:-----------------|
 | curl -s "https://ag-bie.oztaxa.com/ws/search?q=${idno}" | curl -s --data-urlencode "q=${idno}" 'https://ag-bie.oztaxa.com/ws/search' |
