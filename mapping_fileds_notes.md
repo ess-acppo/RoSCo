@@ -1,6 +1,11 @@
 ### mapping fields (from ag-bie to collectiveaccess / rosco)
 
+| in the URL string                                       | --data-urlencode |
+|:--------------------------------------------------------|:-----------------|
+| curl -s "https://ag-bie.oztaxa.com/ws/search?q=${idno}" | curl -s --data-urlencode "q=${idno}" 'https://ag-bie.oztaxa.com/ws/search' |
+
 ag-bie JSON result/payload
+
 ```BASH
 idno="Drosera indica";
 curl -s \
