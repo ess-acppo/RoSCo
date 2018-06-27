@@ -1,7 +1,15 @@
 ### mapping fields (from ag-bie to collectiveaccess / rosco)
 
-1. The user creates new object in CollectiveAccess, enters new object identifier (`idno`) and presses the Save button 
-2. The installed custom PHP hook [hookSaveItem or hookBeforeSaveItem](https://docs.collectiveaccess.org/wiki/Application_plugins#Editing_.28Providence_editors.29) uses the object identifier (`idno`)
+1. The user creates a new object in the CollectiveAccess' web GUI:
+   - enters new object identifier (`idno`)
+   - and presses the Save button 
+2. The installed custom PHP hook [hookSaveItem or hookBeforeSaveItem](https://docs.collectiveaccess.org/wiki/Application_plugins#Editing_.28Providence_editors.29) extracts the new object's identifier (`idno`), and performs a REST API search to 
+    ```php
+    public function hookEditItem($pa_params) {
+            $obj_idno = $pa_params['idno'];
+
+    }    
+    ```
 3.
 4.
 5.
