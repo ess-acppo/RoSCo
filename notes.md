@@ -58,9 +58,9 @@ curl -s \
      ```JSON
      remove_attributes: [
          "r_author",
-	 "r_kingdom",
-	 "r_family",
-	 "r_genus"
+         "r_kingdom",
+         "r_family",
+         "r_genus"
      ]
      ```
    editing JSON [jq setpath()](https://stedolan.github.io/jq/manual/#Builtinoperatorsandfunctions)
