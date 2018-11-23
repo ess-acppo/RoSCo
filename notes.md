@@ -105,6 +105,16 @@ Uset **get() & set()** to read & write the fields
 	$t_object->set('idno', 'my_new_idno');
 ```
 
+### Resources/Notes/Extensions/Libs
+- not sure if this will be used/required with ROSCO; source: https://stackoverflow.com/questions/9589337/rest-client-for-collectiveaccess-api
+  ```ruby
+  require 'httpclient'
+  clnt = HTTPClient.new
+  clnt.set_cookie_store('/home/user/cookie.dat')
+  puts clnt.get('http://localhost/service.php/iteminfo/ItemInfo/rest?method=auth&username=administrator&password=12345').body
+  puts clnt.get('http://localhost/service.php/iteminfo/ItemInfo/rest?method=getLabels&type=ca_objects&item_id=4&mode=all').body
+  ```
+
 ### References
 - https://docs.collectiveaccess.org/wiki/Main_Page
 - https://docs.collectiveaccess.org/wiki/Application_plugins
