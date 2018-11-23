@@ -53,7 +53,16 @@ curl -s \
         > /tmp/test_rec_id-25.json
    ```
 2. edit/update the fields
-   **`"remove_all_attributes": true`**
+   - either use **`"remove_all_attributes": true`**
+   - or use **`"remove_attributes": []`** to list **ALL** the fields you want to update/overwrite (instead of duplicate-add-new-value):
+     ```JSON
+     remove_attributes: [
+         "r_author",
+	 "r_kingdom",
+	 "r_family",
+	 "r_genus"
+     ]
+     ```
    editing JSON [jq setpath()](https://stedolan.github.io/jq/manual/#Builtinoperatorsandfunctions)
    ```
    
