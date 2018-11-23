@@ -106,6 +106,7 @@ Uset **get() & set()** to read & write the fields
 ```
 
 ### Resources/Notes/Extensions/Libs
+- PHP decode JSON received from ag-bie REST API: https://secure.php.net/manual/en/function.json-decode.php
 - not sure if this will be used/required with ROSCO; source: https://stackoverflow.com/questions/9589337/rest-client-for-collectiveaccess-api
   ```ruby
   require 'httpclient'
