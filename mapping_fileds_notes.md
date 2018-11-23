@@ -20,7 +20,7 @@
 
 **`TODO:`** 
 - are we going to use the [PHP cURL lib]( https://secure.php.net/manual/en/book.curl.php)?
-  `sudo apt-get install php5-curl`
+  `sudo apt-get install php-curl` ~~php5-curl~~
 -
 
 ---
