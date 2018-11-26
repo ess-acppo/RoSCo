@@ -1,5 +1,9 @@
 ### mapping fields (from ag-bie to collectiveaccess.org / rosco)
+#### plugin setup/installation
+1. add new plugin to: `/var/www/providence/app/plugins/`
+2. TODO
 
+#### plugin functionality/implementation
 1. The user creates a new object in the CollectiveAccess' web GUI:
    - enters new object identifier (`idno`), for example: "Drosera indica"
    - and presses the Save button 
