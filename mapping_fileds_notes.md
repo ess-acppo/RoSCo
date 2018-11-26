@@ -1,6 +1,9 @@
 ### mapping fields (from ag-bie to collectiveaccess.org / rosco)
 #### plugin setup/installation
-1. add new plugin to: `/var/www/providence/app/plugins/`
+1. Add new plugin to: `/var/www/providence/app/plugins/`
+   - mkdir /var/www/providence/app/plugins/agbie
+   - touch /var/www/providence/app/plugins/agbie/agbiePlugin.php
+   - sudo chown -R www-data:www-data /var/www/providence/app/plugins/agbie
 2. TODO
 
 #### plugin functionality/implementation
