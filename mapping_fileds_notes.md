@@ -3,16 +3,22 @@
 1. The user creates a new object in the CollectiveAccess' web GUI:
    - enters new object identifier (`idno`), for example: "Drosera indica"
    - and presses the Save button 
-2. The installed custom PHP hook [hookSaveItem or hookBeforeSaveItem](https://docs.collectiveaccess.org/wiki/Application_plugins#Editing_.28Providence_editors.29):
+2. The installed custom PHP hook [hookSaveItem](https://docs.collectiveaccess.org/wiki/Application_plugins#Editing_.28Providence_editors.29):
    - extracts the new object's identifier (`idno`), ("Drosera indica" in our example)
    - performs a request to the ag-bie's REST API [/ws/search](https://uat-ag-bie.oztaxa.com/ws/search?q=Drosera%20indica) endpoint;
    - from the returned JSON structure parses/extracts values stored in the fields described int the [above CSV table (ag-bie column)](https://gist.github.com/mbohun/33cd369e5a1033a31fc65613f79f3e1d#file-mapping_fields-csv)
    
    *example:*
    ```php
-   public function hookEditItem($pa_params) {
+   public function hookSaveItem($pa_params) {
+           /* get the identifier user just entered in the GUI */
            $obj_idno = $pa_params['idno'];
 
+           /* use the identifier to perform a request to the ag-bie REST API*/
+           
+           /* from the JSON result returned by the ag-bie REST API copy the values */
+           
+           /* save the object/record into the CollectiveAccess */
    }
    ```
 3. **`TODO:`**
