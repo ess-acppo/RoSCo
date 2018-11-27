@@ -2,7 +2,8 @@
 #### plugin setup/installation
 1. Add new plugin to: `/var/www/providence/app/plugins/`
    - mkdir /var/www/providence/app/plugins/agbie
-   - touch /var/www/providence/app/plugins/agbie/agbiePlugin.php
+   - /var/www/providence/app/plugins/agbie/[agbiePlugin.php](https://gist.github.com/mbohun/33cd369e5a1033a31fc65613f79f3e1d#file-agbiePlugin-php)
+   - /var/www/providence/app/plugins/agbie/conf/[agbie.conf](https://gist.github.com/mbohun/33cd369e5a1033a31fc65613f79f3e1d#file-agbie-conf)
    - sudo chown -R www-data:www-data /var/www/providence/app/plugins/agbie
 2. TODO
 
