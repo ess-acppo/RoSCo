@@ -5,7 +5,16 @@
    - /var/www/providence/app/plugins/agbie/[agbiePlugin.php](https://gist.github.com/mbohun/33cd369e5a1033a31fc65613f79f3e1d#file-agbieplugin-php)
    - /var/www/providence/app/plugins/agbie/conf/[agbie.conf](https://gist.github.com/mbohun/33cd369e5a1033a31fc65613f79f3e1d#file-agbie-conf)
    - sudo chown -R www-data:www-data /var/www/providence/app/plugins/agbie
-2. TODO
+2. Configuration:
+   - agbiePlugin.php config options are in /var/www/providence/app/plugins/agbie/conf/[agbie.conf](https://gist.github.com/mbohun/33cd369e5a1033a31fc65613f79f3e1d#file-agbie-conf)
+   - currently available options are:
+     - `enabled` = 1
+     - `agbie_url_rest_api_search` = "https://ag-bie.oztaxa.com/ws/search.json"
+3. Logging / monitoring:
+   - in this implementation the agbiePlugin.php logs into:
+     ```
+     /var/www/providence/app/log/log_2018-11-28.txt
+     ```
 
 #### plugin functionality/implementation
 1. The user creates a new object in the CollectiveAccess' web GUI:
