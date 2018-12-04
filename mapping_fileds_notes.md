@@ -11,7 +11,7 @@
      - `enabled` = 1
      - `agbie_url_rest_api_search` = "https://ag-bie.oztaxa.com/ws/search.json"
 3. Logging / monitoring:
-   - in this implementation the agbiePlugin.php logs into /var/www/providence/app/log:
+   - this implementation of agbiePlugin.php logs in `/var/www/providence/app/log`:
      ```
      /var/www/providence/app/log/log_2018-11-28.txt
      ```
