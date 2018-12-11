@@ -153,7 +153,7 @@ class agbiePlugin extends BaseApplicationPlugin {
 			$agbie_obj_result = $agbie_obj['searchResults']['results'][0];
 
 			global $g_ui_locale_id;
-			$this->log->logInfo(_t('agbiePlugin hookSaveItem; g_ui_locale_id=%1', $g_ui_locale_id));			
+			$this->log->logInfo(_t('agbiePlugin hookSaveItem; g_ui_locale_id=%1', $g_ui_locale_id));
 
 			# TODO: separate copy values function
 			$t_object->setMode(ACCESS_WRITE);
@@ -180,7 +180,7 @@ class agbiePlugin extends BaseApplicationPlugin {
 					#       a) $t_object->removeAttributes($rosco_field);
 					#          $t_object->addAttribute(array($rosco_field => $agbie_obj_result[$agbie_field], 'locale_id' => $g_ui_locale_id), $rosco_field);
 					#       b) $t_object->replaceAttribute(array($rosco_field => $agbie_obj_result[$agbie_field], 'locale_id' => $g_ui_locale_id), $rosco_field);
-                                        #       c) $t_object->replaceAttribute(); ?
+                    #       c) $t_object->replaceAttribute(); ?
 					$t_object->replaceAttribute(array($rosco_field => $agbie_obj_result[$agbie_field], 'locale_id' => $g_ui_locale_id), $rosco_field);
 
 				} else {
