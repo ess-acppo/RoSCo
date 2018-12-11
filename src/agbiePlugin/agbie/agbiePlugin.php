@@ -20,22 +20,22 @@ class agbiePlugin extends BaseApplicationPlugin {
 	const AGBIE_TO_ROSCO_FIELD_MAPPING = array(
 		'author'           => 'r_author',
 		'class'            => 'r_class',
-		#'commonName'       => 'r_common_name', # NOTE: agbie's commonName field contains a comma sep list of common names
-		'commonNameSingle' => 'r_common_name', # TODO: agbie's commonNameSingle field as it's names does suggest contains one common name
+		#'commonName'       => 'r_common_name', # NOTE: agbie's commonName field is MULTI-valued, ie. it does contains a comma sep list of common names
+		'commonNameSingle' => 'r_common_name', # NOTE: agbie's commonNameSingle field as it's names does suggest contains one (SINGLE) common name
 		'family'           => 'r_family',
 		'genus'            => 'r_genus',
 		'kingdom'          => 'r_kingdom',
 		'order'            => 'r_order',
 		'phylum'           => 'r_phylum',
 		'species'          => 'r_species',
-		#'subclass'         => 'r_subclass', # NOTE: missing in ROSCO?
+		#'subclass'         => 'r_subclass', # TODO: missing in ROSCO?
 		'subfamily'        => 'r_subfamily',
 		'subgenus'         => 'r_subgenus',
 		'suborder'         => 'r_suborder',
-		'subspecies'       => 'r_subspecies', # TODO: double-check if agbie has 'subspecies' field
+		'subspecies'       => 'r_subspecies',
 		'superfamily'      => 'r_superfamily',
-		#'superorder'       => 'r_superorder', # NOTE: missing in ROSCO?
-		'tribe'            => 'r_tribe' # NOTE: does agbie provide tribe field?
+		#'superorder'       => 'r_superorder', # TODO: missing in ROSCO?
+		'tribe'            => 'r_tribe'
 	);
 
 	# -------------------------------------------------------
@@ -102,6 +102,13 @@ class agbiePlugin extends BaseApplicationPlugin {
 		#       - E. pauciflora subsp. pauciflora            => 4
 		#       - E. pauciflora subsp. hedraia               => 4
 		#       - Cortinarius vulpinus subsp. pseudovulpinus => 4
+		#
+		#       - ...and here is are some concrete examples (of subspecies names) returned by ag-bie:
+		#         - Passiflora aurantia var. aurantia        => 4
+		#         - Adenia heterophylla australis            => 3
+		#         - Diplocyclos palmatus ssp. affinis        => 4
+		#         - Cucumis melo melo cantalupensis          => 4
+		#
 		#       MORAL OF THE STORY: we could verify the provided (user supplied) species/subspecies name
 		#       that it does contain AT LEAST TWO STRINGS before calling agbie.
 		$species_name_str_array = explode(' ', $species_name);
@@ -145,6 +152,9 @@ class agbiePlugin extends BaseApplicationPlugin {
 			#       In this first implementation we simply take/use the first result: .searchResults.result[0]
 			$agbie_obj_result = $agbie_obj['searchResults']['results'][0];
 
+			global $g_ui_locale_id;
+			$this->log->logInfo(_t('agbiePlugin hookSaveItem; g_ui_locale_id=%1', $g_ui_locale_id));			
+
 			# TODO: separate copy values function
 			$t_object->setMode(ACCESS_WRITE);
 
@@ -165,10 +175,13 @@ class agbiePlugin extends BaseApplicationPlugin {
 					}
 				}
 
-
 				if (strlen($agbie_field_val) > 0) {
-					$t_object->removeAttributes($rosco_field);
-					$t_object->addAttribute(array($rosco_field => $agbie_obj_result[$agbie_field]), $rosco_field);
+					# NOTE: what is the 'best' way to set an attribute value in our (rosco) case?
+					#       a) $t_object->removeAttributes($rosco_field);
+					#          $t_object->addAttribute(array($rosco_field => $agbie_obj_result[$agbie_field], 'locale_id' => $g_ui_locale_id), $rosco_field);
+					#       b) $t_object->replaceAttribute(array($rosco_field => $agbie_obj_result[$agbie_field], 'locale_id' => $g_ui_locale_id), $rosco_field);
+                                        #       c) $t_object->replaceAttribute(); ?
+					$t_object->replaceAttribute(array($rosco_field => $agbie_obj_result[$agbie_field], 'locale_id' => $g_ui_locale_id), $rosco_field);
 
 				} else {
 					$this->log->logInfo(_t('agbiePlugin hookSaveItem copy:   %1 is EMPTY or null => SKIPPING...', $agbie_field));
