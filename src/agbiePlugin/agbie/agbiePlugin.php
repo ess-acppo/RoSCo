@@ -1,17 +1,17 @@
 <?php
 /* ----------------------------------------------------------------------
- * agbiePlugin.php
- * ----------------------------------------------------------------------
- * Department of Agriculture and Water Resources
- * ----------------------------------------------------------------------
- *
- * Software by Department of Agriculture and Water Resources
- * Copyright 2018 Martin Bohun Hormann; martin.bohun@gmail.com
- * This file originally contributed 2018 by Martin Bohun Hormann
- *
- * TODO: add licensing info
- * ----------------------------------------------------------------------
- */
+* agbiePlugin.php
+* ----------------------------------------------------------------------
+* Department of Agriculture and Water Resources
+* ----------------------------------------------------------------------
+*
+* Software by Department of Agriculture and Water Resources
+* Copyright 2018 Martin Bohun Hormann; martin.bohun@gmail.com
+* This file originally contributed 2018 by Martin Bohun Hormann
+*
+* TODO: add licensing info
+* ----------------------------------------------------------------------
+*/
 
 require_once(__CA_LIB_DIR__.'/core/Logging/KLogger/KLogger.php');
 
@@ -25,24 +25,24 @@ class agbiePlugin extends BaseApplicationPlugin {
 		'family'           => 'r_family',
 		'genus'            => 'r_genus',
 		'kingdom'          => 'r_kingdom',
-  		'order'            => 'r_order',
+		'order'            => 'r_order',
 		'phylum'           => 'r_phylum',
-                'species'          => 'r_species',
+		'species'          => 'r_species',
 		#'subclass'         => 'r_subclass', # NOTE: missing in ROSCO?
-                'subfamily'        => 'r_subfamily',
-                'subgenus'         => 'r_subgenus',
-                'suborder'         => 'r_suborder',
-                'subspecies'       => 'r_subspecies', # TODO: double-check if agbie has 'subspecies' field
-		'superfamily'      => 'r_superfamily'
+		'subfamily'        => 'r_subfamily',
+		'subgenus'         => 'r_subgenus',
+		'suborder'         => 'r_suborder',
+		'subspecies'       => 'r_subspecies', # TODO: double-check if agbie has 'subspecies' field
+		'superfamily'      => 'r_superfamily',
 		#'superorder'       => 'r_superorder', # NOTE: missing in ROSCO?
-                #'tribe'            => 'r_tribe' # NOTE: does agbie provide tribe field?
+		'tribe'            => 'r_tribe' # NOTE: does agbie provide tribe field?
 	);
-	
+
 	# -------------------------------------------------------
 	/**
-	 * Plugin config
-	 * @var Configuration
-	 */
+	* Plugin config
+	* @var Configuration
+	*/
 	var $opo_plugin_config = null;
 	var $log = null;
 
@@ -51,11 +51,11 @@ class agbiePlugin extends BaseApplicationPlugin {
 
 	# TODO: use/honor the CA global configuration
 	#$vs_log_dir = caGetOption('log', $pa_options, __CA_APP_DIR__."/log");
-        #$vs_log_level = caGetOption('logLevel', $pa_options, "INFO");
+	#$vs_log_level = caGetOption('logLevel', $pa_options, "INFO");
 
 	# -------------------------------------------------------
 	public function __construct($ps_plugin_path) {
-                parent::__construct();
+		parent::__construct();
 		$this->opo_plugin_config = Configuration::load($ps_plugin_path . DIRECTORY_SEPARATOR . 'conf' . DIRECTORY_SEPARATOR . 'agbie.conf');
 
 		$this->log = new KLogger(__CA_BASE_DIR__ . '/app/log', KLogger::DEBUG);
@@ -66,8 +66,8 @@ class agbiePlugin extends BaseApplicationPlugin {
 	}
 	# -------------------------------------------------------
 	/**
-	 * Override checkStatus() to return true - the MMS plugin always initializes ok
-	 */
+	* Override checkStatus() to return true - the MMS plugin always initializes ok
+	*/
 	public function checkStatus() {
 		return array(
 			'description' => $this->getDescription(),
@@ -76,21 +76,25 @@ class agbiePlugin extends BaseApplicationPlugin {
 			'available' => (bool) $this->opo_plugin_config->get('enabled')
 		);
 	}
-        # -------------------------------------------------------
-        /**
-         * Get plugin user actions
-         */
-        static public function getRoleActionList() {
-                return array();
-        }
+	# -------------------------------------------------------
+	/**
+	* Get plugin user actions
+	*/
+	static public function getRoleActionList() {
+		return array();
+	}
 	# -------------------------------------------------------
 	public function hookSaveItem(&$pa_params) {
-		$this->log->logInfo(_t('agbiePlugin hookSaveItem START')); #: pa_params=%1', json_encode($pa_params)));
+		$overwrite_mode_str = $this->opo_plugin_config->get('overwrite_mode');
+		$overwrite_mode = filter_var($overwrite_mode_str, FILTER_VALIDATE_BOOLEAN);
+
+		$this->log->logInfo(_t('agbiePlugin hookSaveItem START (overwrite_mode=%1)', $overwrite_mode_str)); #: pa_params=%1', json_encode($pa_params)));
+
 		$obj_id = $pa_params['id'];
 
 		$t_object = new ca_objects($obj_id);
 
-		$species_name = $t_object->get('ca_objects.preferred_labels.name'); 
+		$species_name = $t_object->get('ca_objects.preferred_labels.name');
 		$this->log->logInfo(_t('agbiePlugin hookSaveItem: id=%1; "%2"', $obj_id, $species_name));
 
 		# NOTE: species and subspecies name normally (always?) has to contain AT LEAST TWO STRINGS, examples:
@@ -99,16 +103,16 @@ class agbiePlugin extends BaseApplicationPlugin {
 		#       - E. pauciflora subsp. hedraia               => 4
 		#       - Cortinarius vulpinus subsp. pseudovulpinus => 4
 		#       MORAL OF THE STORY: we could verify the provided (user supplied) species/subspecies name
-		#       that it does contain AT LEAST TWO STRINGS before calling agbie. 
+		#       that it does contain AT LEAST TWO STRINGS before calling agbie.
 		$species_name_str_array = explode(' ', $species_name);
-		$this->log->logInfo(_t('agbiePlugin hookSaveItem species name: "%1" contains %2 strings.', $species_name, count($species_name_str_array)));		
+		$this->log->logInfo(_t('agbiePlugin hookSaveItem species name: "%1" contains %2 strings.', $species_name, count($species_name_str_array)));
 
-                $ch = curl_init();
+		$ch = curl_init();
 		$species_name_escaped = curl_escape($ch, _t('"%1"', $species_name));
 
 		# NOTE: TEST we narrow down our query here to only fq=rank:(species OR subspecies)
 		$species_name_search_url = "{$this->opo_plugin_config->get('agbie_url_rest_api_search')}?q={$species_name_escaped}&fq=rank:(species%20OR%20subspecies)";
-                $this->log->logInfo(_t('agbiePlugin hookSaveItem requesting: %1', $species_name_search_url));
+		$this->log->logInfo(_t('agbiePlugin hookSaveItem requesting: %1', $species_name_search_url));
 
 		# NOTE: CURLOPT_FOLLOWLOCATION ag-bie REST API *DOES* USE HTTP redirect
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
@@ -116,10 +120,10 @@ class agbiePlugin extends BaseApplicationPlugin {
 		curl_setopt($ch, CURLOPT_URL, $species_name_search_url);
 
 		# TODO: add proper error handling
-		$output = curl_exec($ch); 
-                curl_close($ch);
+		$output = curl_exec($ch);
+		curl_close($ch);
 
-                $this->log->logInfo(_t('agbiePlugin hookSaveItem REST API returned: %1', $output));
+		$this->log->logInfo(_t('agbiePlugin hookSaveItem REST API returned: %1', $output));
 
 		# NOTE: extract JSON into an associative array
 		$agbie_obj = json_decode($output, true);
@@ -147,14 +151,31 @@ class agbiePlugin extends BaseApplicationPlugin {
 			# TODO: set "locale" either before this foreach() loop or inside per attribute if required
 			foreach (self::AGBIE_TO_ROSCO_FIELD_MAPPING as $agbie_field => $rosco_field ) {
 				$agbie_field_val = $agbie_obj_result[$agbie_field];
-				$this->log->logInfo(_t('agbiePlugin hookSaveItem copy: %1="%2" => %3', $agbie_field, $agbie_field_val, $rosco_field));
+				$rosco_field_val_old = $t_object->get("ca_objects.{$rosco_field}");
+
+				$this->log->logInfo(_t('agbiePlugin hookSaveItem copy: %1="%2" => %3="%4"', $agbie_field, $agbie_field_val, $rosco_field, $rosco_field_val_old));
+
+				# NOTE: this is an example if we decide to *NOT* over-write an existing ROSCO value
+				if (strlen($rosco_field_val_old) > 0) {
+					if ($overwrite_mode) {
+						$this->log->logInfo(_t('agbiePlugin hookSaveItem copy:   %1 existing value "%2" will be overwritten!', $rosco_field, $rosco_field_val_old));
+					} else {
+						$this->log->logInfo(_t('agbiePlugin hookSaveItem copy:   %1 is already set to "%2" won\'t overwrite, SKIPPING...', $rosco_field, $rosco_field_val_old));
+						continue;
+					}
+				}
+
 
 				if (strlen($agbie_field_val) > 0) {
 					$t_object->removeAttributes($rosco_field);
-					$t_object->AddAttribute(array($rosco_field => $agbie_obj_result[$agbie_field]), $rosco_field);
+					$t_object->addAttribute(array($rosco_field => $agbie_obj_result[$agbie_field]), $rosco_field);
 
 				} else {
 					$this->log->logInfo(_t('agbiePlugin hookSaveItem copy:   %1 is EMPTY or null => SKIPPING...', $agbie_field));
+					# NOTE: WARNING the last continue (in foreach()) is obviously not required because there is no
+					#       more processing bellow to be skipped, but just in case someone was extending this, adding
+					#       more processing bellow, i will leave it here for the emphasis.
+					continue;
 				}
 			}
 
@@ -162,7 +183,7 @@ class agbiePlugin extends BaseApplicationPlugin {
 		}
 
 		# NOTE: this END marker/message is here in case an exception was thrown (if an exception was thrown the message won't be in the log)
-                $this->log->logInfo(_t('agbiePlugin hookSaveItem END'));
+		$this->log->logInfo(_t('agbiePlugin hookSaveItem END'));
 		return true;
 	}
 	# -------------------------------------------------------
@@ -171,4 +192,3 @@ class agbiePlugin extends BaseApplicationPlugin {
 		return true;
 	}
 }
-
