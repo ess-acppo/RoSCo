@@ -66,14 +66,21 @@ class agbiePlugin extends BaseApplicationPlugin {
 	}
 	# -------------------------------------------------------
 	/**
-	* Override checkStatus() to return true - the MMS plugin always initializes ok
+	* NOTE: https://docs.collectiveaccess.org/wiki/Application_plugins#The_Plugin_Class
+	*       The return value for checkStatus() is an array with four keys:
+	*       - description: a description of the plugin
+	*       - errors: an array of text error messages relating to the initialization of the plugin. This should be an empty array if there are no errors.
+    *         If the plugin is not available the reason why should be expressed in the errors array.
+	*       - warnings: an array of text warning messages relating to the initialization of the plugin. Should be a list
+    *         of warnings about anything that will limit the functionality of the plugin. Should be an empty array if there are no warnings.
+	*       - available: set to true if plugin is loaded and available for use, false if it cannot load for some reason.
 	*/
 	public function checkStatus() {
 		return array(
-			'description' => $this->getDescription(),
-			'errors' => array(),
-			'warnings' => array(),
-			'available' => (bool) $this->opo_plugin_config->get('enabled')
+			'description' => $this->description, #getDescription(),
+			'errors'      => array(),
+			'warnings'    => array(),
+			'available'   => (bool) $this->opo_plugin_config->get('enabled')
 		);
 	}
 	# -------------------------------------------------------
@@ -121,22 +128,48 @@ class agbiePlugin extends BaseApplicationPlugin {
 		$species_name_search_url = "{$this->opo_plugin_config->get('agbie_url_rest_api_search')}?q={$species_name_escaped}&fq=rank:(species%20OR%20subspecies)";
 		$this->log->logInfo(_t('agbiePlugin hookSaveItem requesting: %1', $species_name_search_url));
 
+		# NOTE: setup curl error trigger-ing on HTTP_CODE 4xx:
+		#       "As per http://curl.haxx.se/libcurl/c/libcurl-errors.html
+		#       CURLE_HTTP_RETURNED_ERROR (22)
+		#       This is returned if CURLOPT_FAILONERROR is set TRUE and the HTTP server returns an error code that is >= 400.
+		#       (This error code was formerly known as CURLE_HTTP_NOT_FOUND.)
+		#       WITHOUT this option you still can check for errors, but it takes more effort (examining the details of array/properties
+		#       returned by curl_getinfo()).
+		#curl_setopt($ch, CURLOPT_FAILONERROR, true);
+
 		# NOTE: CURLOPT_FOLLOWLOCATION ag-bie REST API *DOES* USE HTTP redirect
 		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_URL, $species_name_search_url);
 
-		# TODO: add proper error handling
+		# NOTE: do the request; if (curl_errno($ch)) { curl_exec($ch); }
 		$output = curl_exec($ch);
+
+		# NOTE: this is to check curl errors, PHP is great at hiding errors
+		$curl_rc_errno = curl_errno($ch);
+		$curl_rc_error_msg = curl_error($ch);
+		$curl_info_http_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+		$this->log->logInfo(_t('agbiePlugin hookSaveItem curl request returned: curl_errno=%1; curl_error=%2; HTTP_CODE: %3', $curl_rc_errno, $curl_rc_error_msg, $curl_info_http_code));
+
 		curl_close($ch);
 
-		$this->log->logInfo(_t('agbiePlugin hookSaveItem REST API returned: %1', $output));
+		$this->log->logInfo(_t('agbiePlugin hookSaveItem curl request to the agbie REST API returned: %1', $output));
 
 		# NOTE: extract JSON into an associative array
 		$agbie_obj = json_decode($output, true);
 
+		# NOTE: check json_decode error chack/handling
+		$rc_json_decode = json_last_error();
+		$this->log->logInfo(_t('agbiePlugin hookSaveItem json_decode returned: %1; (JSON_ERROR_NONE=%2)', $rc_json_decode, JSON_ERROR_NONE));
+		if (JSON_ERROR_NONE != $rc_json_decode) {
+			$this->log->logInfo(_t('agbiePlugin hookSaveItem json_decode returned: %1; error message:%2', $rc_json_decode, json_last_error_msg()));
+			return false;
+		}
+
 		$agbie_obj_total_records = intval($agbie_obj['searchResults']['totalRecords']);
 		$this->log->logInfo(_t('agbiePlugin hookSaveItem received: .searchResults.totalRecords=%1', $agbie_obj_total_records));
+
+		# TODO: from the start of this method up to THIS POINT the functionality can be (ideally will be) shared with checkStatus() and separated into get_agbie_data()
 
 		if ($agbie_obj_total_records < 1) {
 			$this->log->logInfo(_t('agbiePlugin hookSaveItem received NO data; nothing to do...'));
