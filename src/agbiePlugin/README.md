@@ -19,6 +19,7 @@ Zend Engine v3.0.0, Copyright (c) 1998-2017 Zend Technologies
    - /var/www/providence/app/plugins/agbie/[agbiePlugin.php](https://gist.github.com/mbohun/33cd369e5a1033a31fc65613f79f3e1d#file-agbieplugin-php)
    - /var/www/providence/app/plugins/agbie/conf/[agbie.conf](https://gist.github.com/mbohun/33cd369e5a1033a31fc65613f79f3e1d#file-agbie-conf)
    - sudo chown -R www-data:www-data /var/www/providence/app/plugins/agbie
+   - Login and go to the https://dev-rosco.oztaxa.com/index.php/administrate/setup/ConfigurationCheck/DoCheck page, scroll to the bottom of the page to the "Application Plugins" section and check if the agbie plugin is being correctly show in the table of plugins, as shown in the screenshot bellow:
 3. Configuration:
    - agbiePlugin.php config options are in /var/www/providence/app/plugins/agbie/conf/[agbie.conf](https://gist.github.com/mbohun/33cd369e5a1033a31fc65613f79f3e1d#file-agbie-conf)
    - currently available options are:
