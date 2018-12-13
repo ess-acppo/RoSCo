@@ -25,7 +25,7 @@ Zend Engine v3.0.0, Copyright (c) 1998-2017 Zend Technologies
    - agbiePlugin.php config options are in /var/www/providence/app/plugins/agbie/conf/[agbie.conf](https://gist.github.com/mbohun/33cd369e5a1033a31fc65613f79f3e1d#file-agbie-conf)
    - currently available options are:
      - `enabled` = 1
-     - `agbie_url_rest_api_search` = "https://ag-bie.oztaxa.com/ws/search.json"
+     - `agbie_url_rest_api_search` = "https://uat-ag-bie.oztaxa.com/ws/search.json"
 4. Logging / monitoring:
    - this implementation of agbiePlugin.php logs in `/var/www/providence/app/log`:
      ```
