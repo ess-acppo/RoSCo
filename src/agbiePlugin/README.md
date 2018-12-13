@@ -1,5 +1,5 @@
 ## agbiePlugin for https://collectiveaccess.org/ (1.7.6)
-#### intro
+#### Intro
 
 ```
 ubuntu@ip-192-168-1-229:~$ php --version
@@ -8,7 +8,7 @@ Copyright (c) 1997-2017 The PHP Group
 Zend Engine v3.0.0, Copyright (c) 1998-2017 Zend Technologies
     with Zend OPcache v7.0.32-0ubuntu0.16.04.1, Copyright (c) 1999-2017, by Zend Technologies
 ```    
-#### plugin setup/installation
+#### Plugin setup/installation
 ##### Summary
 Simply clone this git repo, go to this `src/agbiePlugin` subdir and run the [install.sh](./install.sh) script as show in this example bellow (the install.sh script executes the step-s 1 and 2 bellow):
 ```BASH
@@ -46,4 +46,3 @@ Simply clone this git repo, go to this `src/agbiePlugin` subdir and run the [ins
    ```
    sudo rm -rf /var/www/providence/app/plugins/agbie
    ```
-   
