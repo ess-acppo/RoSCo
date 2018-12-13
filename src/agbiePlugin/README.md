@@ -26,6 +26,7 @@ Zend Engine v3.0.0, Copyright (c) 1998-2017 Zend Technologies
    - currently available options are:
      - `enabled` = 1
      - `agbie_url_rest_api_search` = "https://uat-ag-bie.oztaxa.com/ws/search.json"
+     - `overwrite_mode = 0`
 4. Logging / monitoring:
    - this implementation of agbiePlugin.php logs in `/var/www/providence/app/log`:
      ```
