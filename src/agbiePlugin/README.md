@@ -50,9 +50,16 @@ Simply clone this git repo, go to this `src/agbiePlugin` subdir and run the [ins
 ### Usage
 1. Login to your RoSCo instance
 2. From the menu in the right upper corner select `New` -> `Object` -> `Botany (Plants)`
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-00_create_new_object.png "RoSCo create new Object...")
 3. Fill in the (required) information:
    1. "Accession Number"
    2. "Preferred labels" (this is the species name, for example: _Bactrocera tryoni_)
    3. ...and press Save (that will trigger the agbiePlugin's hookSaveItem() method, the method extracts the species name you entered in the "Preferred labels", and uses the species name to perform a REST API request to agbie, and using the received agbie values the plugin populates the taxonomy fields (kingdom, genus, order, author, etc.)
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-01_create_new_object_save.png "RoSCo create new Object...")
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-02_create_new_object_saved.png "RoSCo create new Object...")
 4. Go/switch to the "TAXON" tab and you should see the fields populated with taxonomic info received from agbie
-5. You can add add or modify any of the fields, and press Save again, this will again trigger the agbiePlugin's hookSaveItem() method, but the plugin should now recognize/detect existing values (added or changed) and NOT overwrite any of those (the information/values filled in by a human user do have higher priority, and hence won't be overwritten by the plugin; this behaviour is controlled by the `overwrite_mode` config option/property.
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-03_new_object_agbie_values.png "RoSCo new Object agbie values...")
+5. You can add add or modify any of the fields, and press Save again
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-04_object_edit_values.png "RoSCo new Object agbie values...")
+6. ...this will again trigger the agbiePlugin's hookSaveItem() method, but the plugin should now recognize/detect existing values (added or changed) and NOT overwrite any of those (the information/values filled in by a human user do have higher priority, and hence won't be overwritten by the plugin; this behaviour is controlled by the `overwrite_mode` config option/property.
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-05_object_edited_values_saved.png "RoSCo new Object agbie values...")
