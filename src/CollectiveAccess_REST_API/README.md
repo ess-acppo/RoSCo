@@ -97,33 +97,6 @@ curl -s \
 4. repeat the step 1. above to get and verify the updated record  
    ```
    ```
-### Application plugins (for writing/creating data)
-
-```php
-public function hookEditItem($pa_params) {
-	$item_id = $pa_params['id'];  // The parameter passed to EditItem is a key'ed array of values (see below for details)
-	$table_num = $pa_params['table_num'];
-
-	// ... more code here ...
-}
-```
-
-Uset **get() & set()** to read & write the fields
-```php
-	$t_object->get('ca_objects.description');
-	$t_object->set('idno', 'my_new_idno');
-```
-
-### Resources/Notes/Extensions/Libs
-- PHP decode JSON received from ag-bie REST API: https://secure.php.net/manual/en/function.json-decode.php
-- not sure if this will be used/required with ROSCO; source: https://stackoverflow.com/questions/9589337/rest-client-for-collectiveaccess-api
-  ```ruby
-  require 'httpclient'
-  clnt = HTTPClient.new
-  clnt.set_cookie_store('/home/user/cookie.dat')
-  puts clnt.get('http://localhost/service.php/iteminfo/ItemInfo/rest?method=auth&username=administrator&password=12345').body
-  puts clnt.get('http://localhost/service.php/iteminfo/ItemInfo/rest?method=getLabels&type=ca_objects&item_id=4&mode=all').body
-  ```
 
 ### References
 - https://docs.collectiveaccess.org/wiki/Main_Page
