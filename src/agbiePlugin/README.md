@@ -1,6 +1,8 @@
 ## agbiePlugin for https://collectiveaccess.org/ (1.7.6)
 #### Intro
 
+![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/doc/RoSCo_agbiePlugin.png "agbiePlugin architecture")
+
 ```
 ubuntu@ip-192-168-1-229:~$ php --version
 PHP 7.0.32-0ubuntu0.16.04.1 (cli) ( NTS )
