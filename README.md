@@ -1,6 +1,8 @@
 # RoSCo
 Register of Specimen and Collections  
 (based on https://collectiveaccess.org/ version **`1.7.6`**)
+- **[agbiePlugin](src/agbiePlugin)**
+- **[CA REST API](src/CollectiveAccess_REST_API)**
 
 #### REFERENCES
 - version info details: https://dev-rosco.oztaxa.com/index.php/administrate/setup/ConfigurationCheck/DoCheck
