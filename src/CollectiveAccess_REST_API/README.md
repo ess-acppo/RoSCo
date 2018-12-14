@@ -1,3 +1,45 @@
+## RECENT NOTES (2018-12-14)
+```
+mbohun@linux-cr70:~/src/RoSCo.git/src/CollectiveAccess_REST_API/bin> export ROSCO_HOST='dev-rosco.oztaxa.com';
+mbohun@linux-cr70:~/src/RoSCo.git/src/CollectiveAccess_REST_API/bin> export ROSCO_USERNAME=test
+mbohun@linux-cr70:~/src/RoSCo.git/src/CollectiveAccess_REST_API/bin> export ROSCO_PASSWORD=123
+```
+```
+mbohun@linux-cr70:~/src/RoSCo.git/src/CollectiveAccess_REST_API/bin> ./ROSCO_env_test.sh
+ROSCO_AUTH_TOKEN:b652f88633e758e1751e60c269c723e87c88a4099347f030d002e70181b3a9c6
+
+TEST: version:
+
+TEST: rosco_total=5
+
+TEST: list all objects (to show the fields)...
+
+TEST: getting/showing:  https://dev-rosco.oztaxa.com/service.php/item/ca_objects/id/46
+
+TEST: getting/showing:  https://dev-rosco.oztaxa.com/service.php/item/ca_objects/id/47
+
+TEST: getting/showing:  https://dev-rosco.oztaxa.com/service.php/item/ca_objects/id/48
+
+TEST: getting/showing:  https://dev-rosco.oztaxa.com/service.php/item/ca_objects/id/49
+
+TEST: getting/showing:  https://dev-rosco.oztaxa.com/service.php/item/ca_objects/id/50
+```
+```
+mbohun@linux-cr70:~/src/RoSCo.git/src/CollectiveAccess_REST_API/bin> ls -lahF *.json
+-rw-r--r-- 1 mbohun users 3.5K Dec 14 14:51 46.json
+-rw-r--r-- 1 mbohun users 3.5K Dec 14 14:51 47.json
+-rw-r--r-- 1 mbohun users 3.8K Dec 14 14:51 48.json
+-rw-r--r-- 1 mbohun users 4.2K Dec 14 14:51 49.json
+-rw-r--r-- 1 mbohun users 3.8K Dec 14 14:51 50.json
+```
+
+example 50.json:
+```JSON
+
+```
+
+## OLDER NOTES (June/Julty 2018)
+
 ### Web Service API (reading & writing data)
 
 #### auth
