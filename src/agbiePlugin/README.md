@@ -32,7 +32,7 @@ Simply clone this git repo, go to this `src/agbiePlugin` subdir and run the [ins
    ```
 3. Verify the plugin installation:   
    - Login and go to the https://dev-rosco.oztaxa.com/index.php/administrate/setup/ConfigurationCheck/DoCheck page, scroll to the bottom of the page to the "Application Plugins" section and check if the agbie plugin is being correctly show in the table of plugins, as shown in the screenshot bellow:
-     ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/agbiePlugin_install_verification.png "Application Plugins")
+     ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/doc/screenshots/RoSCo-06_agbiePlugin_install_verification.png "Application Plugins")
 4. Configuration:
    - agbiePlugin.php config options are in /var/www/providence/app/plugins/[agbie/conf/agbie.conf](./agbie/conf/agbie.conf)
    - currently available options are:
@@ -52,13 +52,13 @@ Simply clone this git repo, go to this `src/agbiePlugin` subdir and run the [ins
 ### Usage
 1. Login to your RoSCo instance
 2. From the menu in the right upper corner select `New` -> `Object` -> `Botany (Plants)`
-   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-00_create_new_object.png "RoSCo create new Object...")
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/doc/screenshots/RoSCo-00_create_new_object.png "RoSCo create new Object...")
 3. Fill in the (required) information:
    1. "Accession Number"
    2. "Preferred labels" (this is the species name, for example: _Bactrocera tryoni_)
-   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-01_create_new_object_save.png "RoSCo create new Object...")
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/doc/screenshots/RoSCo-01_create_new_object_save.png "RoSCo create new Object...")
    3. ...and press Save (that will trigger the agbiePlugin's hookSaveItem() method, the method extracts the species name you entered in the "Preferred labels", and uses the species name to perform a REST API request to agbie, and using the received agbie values the plugin populates the taxonomy fields (kingdom, genus, order, author, etc.)   
-   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-02_create_new_object_saved.png "RoSCo create new Object...")
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/doc/screenshots/RoSCo-02_create_new_object_saved.png "RoSCo create new Object...")
    4. in the log file you should see something like:
    ```
    2018-12-13 15:58:48 - INFO --> agbiePlugin, using ag-bie REST API search endpoint: https://uat-ag-bie.oztaxa.com/ws/search.json
@@ -91,11 +91,11 @@ Simply clone this git repo, go to this `src/agbiePlugin` subdir and run the [ins
    2018-12-13 15:58:49 - INFO --> agbiePlugin, using ag-bie REST API search endpoint: https://uat-ag-bie.oztaxa.com/ws/search.json   
    ```
 4. Go/switch to the "TAXON" tab and you should see the fields populated with taxonomic info received from agbie
-   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-03_new_object_agbie_values.png "RoSCo new Object agbie values...")
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/doc/screenshots/RoSCo-03_new_object_agbie_values.png "RoSCo new Object agbie values...")
 5. You can add add or modify any of the fields, and press Save again
-   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-04_object_edit_values.png "RoSCo new Object agbie values...")
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/doc/screenshots/RoSCo-04_object_edit_values.png "RoSCo new Object agbie values...")
 6. ...this will again trigger the agbiePlugin's hookSaveItem() method, but the plugin should now recognize/detect existing values (added or changed) and NOT overwrite any of those (the information/values filled in by a human user do have higher priority, and hence won't be overwritten by the plugin; this behaviour is controlled by the `overwrite_mode` config option/property.
-   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/RoSCo-05_object_edited_values_saved.png "RoSCo new Object agbie values...")
+   ![Alt text](https://raw.githubusercontent.com/ess-acppo/RoSCo/master/src/agbiePlugin/doc/screenshots/RoSCo-05_object_edited_values_saved.png "RoSCo new Object agbie values...")
    ...and in the log you should see something like:
    ```
    2018-12-13 15:59:49 - INFO --> agbiePlugin, using ag-bie REST API search endpoint: https://uat-ag-bie.oztaxa.com/ws/search.json
