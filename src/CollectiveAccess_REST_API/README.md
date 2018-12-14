@@ -1,4 +1,6 @@
 ## RECENT NOTES (2018-12-14)
+
+#### [ROSCO_env_test.sh](./bin/ROSCO_env_test.sh)
 ```
 mbohun@linux-cr70:~/src/RoSCo.git/src/CollectiveAccess_REST_API/bin> export ROSCO_HOST='dev-rosco.oztaxa.com';
 mbohun@linux-cr70:~/src/RoSCo.git/src/CollectiveAccess_REST_API/bin> export ROSCO_USERNAME=test
@@ -35,6 +37,246 @@ mbohun@linux-cr70:~/src/RoSCo.git/src/CollectiveAccess_REST_API/bin> ls -lahF *.
 
 example 50.json:
 ```JSON
+{
+  "ok": true,
+  "intrinsic_fields": {
+    "object_id": "50",
+    "type_id": "23",
+    "idno": "1972100402",
+    "is_deaccessioned": "0",
+    "extent": "0",
+    "access": "0",
+    "status": "0",
+    "deleted": "0",
+    "rank": "50",
+    "acl_inherit_from_ca_collections": "0",
+    "acl_inherit_from_parent": "0",
+    "access_inherit_from_parent": "0",
+    "view_count": "0"
+  },
+  "preferred_labels": [
+    {
+      "locale": "en_AU",
+      "name": "Bactrocera tryoni"
+    }
+  ],
+  "attributes": {
+    "r_phylum": [
+      {
+        "locale": "none",
+        "r_phylum": "Arthropoda"
+      }
+    ],
+    "r_kingdom": [
+      {
+        "locale": "none",
+        "r_kingdom": "Animalia"
+      }
+    ],
+    "r_collector_name": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_collection_method": [
+      {
+        "locale": "none"
+      }
+    ],
+    "r_collection_date": [
+      {
+        "locale": "none"
+      }
+    ],
+    "r_class": [
+      {
+        "locale": "none",
+        "r_class": "Insecta"
+      }
+    ],
+    "r_order": [
+      {
+        "locale": "none",
+        "r_order": "Diptera"
+      }
+    ],
+    "r_suborder": [
+      {
+        "locale": "none",
+        "r_suborder": "Brachycera"
+      }
+    ],
+    "r_superfamily": [
+      {
+        "locale": "none",
+        "r_superfamily": "Tephritoidea"
+      }
+    ],
+    "r_family": [
+      {
+        "locale": "none",
+        "r_family": "Tephritidae"
+      }
+    ],
+    "r_subfamily": [
+      {
+        "locale": "none",
+        "r_subfamily": "Dacinae"
+      }
+    ],
+    "r_tribe": [
+      {
+        "locale": "none",
+        "r_tribe": "Dacini"
+      }
+    ],
+    "r_genus": [
+      {
+        "locale": "none",
+        "r_genus": "Bactrocera"
+      }
+    ],
+    "r_subgenus": [
+      {
+        "locale": "none",
+        "r_subgenus": "Bactrocera (Bactrocera)"
+      }
+    ],
+    "r_species": [
+      {
+        "locale": "none",
+        "r_species": "Bactrocera (Bactrocera) tryoni"
+      }
+    ],
+    "r_author": [
+      {
+        "locale": "none",
+        "r_author": "(Froggatt, 1897)"
+      }
+    ],
+    "r_common_name": [
+      {
+        "locale": "none",
+        "r_common_name": "Queensland Fruit Fly"
+      }
+    ],
+    "r_speciman_record_entered_by": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_acquisition_details": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_interception_number": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_survey_number": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_vial_number_type": [
+      {
+        "locale": "none"
+      }
+    ],
+    "r_quarantine_entry": [
+      {
+        "locale": "none"
+      }
+    ],
+    "r_collector_number": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_other_number": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_gps_coordinates_latitude": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_gps_coordinates_longitude": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_gda_version": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_commodity_goods": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_host_scientific_name": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_host_common_name": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_host_abundance": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_symptoms": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_number_of_specimens": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_port_of_loading": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_abundance": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_convey_number_voyage": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_convey_number_flight_num": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_country_of_origin": [
+      {
+        "locale": "en_AU"
+      }
+    ],
+    "r_country_point_of_entry": [
+      {
+        "locale": "none"
+      }
+    ]
+  }
+}
 
 ```
 
